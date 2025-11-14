@@ -141,8 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
         intro.style.display = "none";
         document.getElementById("scene1").style.display = "block";
     });
-
-    // Scene choice logic (only for scene buttons, NOT Start button)
+    // Choice buttons
     document.querySelectorAll(".scene").forEach(scene => {
         const choicesDiv = scene.querySelector(".choices");
         let choiceMade = false;
