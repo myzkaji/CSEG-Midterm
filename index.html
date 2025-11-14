@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Between Lines and Feelings</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+
+    <!-- INTRO SCREEN -->
+    <section class="scene" id="intro">
+        <div class="scene-title" style="font-size: 32px; text-align: center; margin-bottom: 20px;">
+            Between Lines and Feelings
+        </div>
+        <div class="dialogue-box" style="text-align: center; font-size: 18px;">
+            A story of slow, quiet connections...
+        </div>
+        <div class="choices" style="text-align: center; margin-top: 30px;">
+            <button class="choice-btn" id="startBtn">Start</button>
+        </div>
+    </section>
+
+    <!-- SCENE 1 -->
+    <section class="scene" id="scene1">
+        <div class="scene-title">First Lab Meeting</div>
+        <div class="character-image" style="background-image:url('guycm.png');"></div>
+        <div class="dialogue-box" id="scene1-dialogue">
+            Narrator: It’s your first programming lab as a freshman CS student. You stare at the screen, confused.<br><br>
+            Eli: “Uh… hey. First time coding too?”<br>
+            You look at him. He seems friendly, calm, kind.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-response="A">Yeah… I don’t get anything.</button>
+            <button class="choice-btn" data-response="B">I’m fine, just slow.</button>
+        </div>
+    </section>
+
+    <!-- SCENE 2 -->
+    <section class="scene" id="scene2">
+        <div class="scene-title">First Study Session</div>
+        <div class="character-image" style="background-image:url('helped.png');"></div>
+        <div class="dialogue-box">
+            He ends up helping you anyway.<br>
+            You sit together, going through basic coding tasks.<br><br>
+            Eli: “Try typing this… see? Logic is everything. You’ll get it.”<br>
+            He’s patient. More patient than he should be.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-response="A">Thanks… I really appreciate this.</button>
+            <button class="choice-btn" data-response="B">You don’t have to help me this much.</button>
+        </div>
+    </section>
+
+    <!-- SCENE 3 -->
+    <section class="scene" id="scene3">
+        <div class="scene-title">After Class</div>
+        <div class="character-image" style="background-image:url('nyay.png');"></div>
+        <div class="dialogue-box">
+            Weeks pass. He waits for you sometimes after class. You talk. You laugh. You feel something… but also this weird guilt from missing your ex.<br><br>
+            Narrator: Eli knows. He knows you're not fully healed. But he stays.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-response="A">Do you ever get tired helping me?</button>
+            <button class="choice-btn" data-response="B">Why are you so nice to me?</button>
+        </div>
+    </section>
+
+    <!-- SCENE 4 -->
+    <section class="scene" id="scene4">
+        <div class="scene-title">Midterm Week</div>
+        <div class="character-image" style="background-image:url('aaa.png');"></div>
+        <div class="dialogue-box">
+            You’re stressed. Tired. Burnt out.<br>
+            Eli finds you sitting alone outside the lab.<br><br>
+            Eli: “Aya… are you okay? You seem overwhelmed lately.”
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-response="A">I miss my ex… I hate that I still do.</button>
+            <button class="choice-btn" data-response="B">I’m scared. Of everything.</button>
+        </div>
+    </section>
+
+    <!-- SCENE 5 -->
+    <section class="scene" id="scene5">
+        <div class="scene-title">His Confession</div>
+        <div class="character-image" style="background-image:url('confessed.png');"></div>
+        <div class="dialogue-box">
+            Eli: “Aya… I like you. More than a classmate. More than a lab partner.”<br>
+            You freeze. Your heart beats faster. He waits.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-response="A">Turn him down</button>
+            <button class="choice-btn" data-response="B">Give him a chance</button>
+        </div>
+    </section>
+
+    <!-- ENDING A -->
+    <section class="scene" id="endingA">
+        <div class="scene-title">Unspoken Lines</div>
+        <div class="character-image" style="background-image:url('ending1.png');"></div>
+        <div class="dialogue-box">
+            Aya: “I’m not ready, Eli. I don’t want to hurt you.”<br>
+            Eli: “…Thank you for being honest.”<br>
+            Narrator: You remain classmates. But there’s tension. It becomes a quiet, unresolved ache.<br><br>
+            A story that almost became something—but didn’t.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-next="intro">Restart Game</button>
+        </div>
+    </section>
+
+    <!-- ENDING B -->
+    <section class="scene" id="endingB">
+        <div class="scene-title">Parallel Paths</div>
+        <div class="character-image" style="background-image:url('ending2.png');"></div>
+        <div class="dialogue-box">
+            Aya: “I’m scared. I hate attention. I don’t want people in class to talk…”<br>
+            Eli: “Then we’ll take it slow. No pressure. No big announcements. Just us. Quiet and steady.”<br>
+            Narrator: And he keeps his promise. Years pass. Your names are called. You look at him. He smiles—proud, warm, yours. You grew together—slowly, quietly, beautifully.
+        </div>
+        <div class="choices">
+            <button class="choice-btn" data-next="intro">Restart Game</button>
+        </div>
+    </section>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const scenes = document.querySelectorAll(".scene");
+    scenes.forEach(s => s.style.display = "none");
+
+    // Show intro first
+    const intro = document.getElementById("intro");
+    intro.style.display = "block";
+
+    // Start button
+    document.getElementById("startBtn").addEventListener("click", () => {
+        intro.style.display = "none";
+        document.getElementById("scene1").style.display = "block";
+    });
+
+    // Scene choice logic (only for scene buttons, NOT Start button)
+    document.querySelectorAll(".scene").forEach(scene => {
+        const choicesDiv = scene.querySelector(".choices");
+        let choiceMade = false;
+
+        scene.querySelectorAll(".choice-btn").forEach(btn => {
+            if(btn.id === "startBtn") return; // ignore Start button
+
+            btn.addEventListener("click", () => {
+                if (choiceMade) return;
+                choiceMade = true;
+
+                // Hide choice buttons
+                scene.querySelectorAll(".choice-btn").forEach(b => b.style.display = "none");
+
+                const response = btn.dataset.response;
+                const dialogueBox = scene.querySelector(".dialogue-box");
+
+                // Update dialogue
+                if(response) {
+                    switch(scene.id) {
+                        case "scene1":
+                            if(response === "A") {
+                                dialogueBox.innerHTML += `<br><br>Eli: “No worries! I can help you out. Want me to walk you through it?”<br>He gives a small smile—genuine, reassuring.<br><br>Narrator: You feel a bit relieved.`;
+                            } else {
+                                dialogueBox.innerHTML += `<br><br>Eli: “Oh—sorry. Didn’t mean to bother.<br>…But if you need help just ask, okay?”<br>He sits back but keeps glancing, concerned.<br><br>Narrator: You feel a bit guilty.`;
+                            }
+                            break;
+                        case "scene2":
+                            if(response === "A") {
+                                dialogueBox.innerHTML += `<br><br>Eli: “I don’t mind. I like helping you.” He says it casually… but it feels sincere.`;
+                            } else {
+                                dialogueBox.innerHTML += `<br><br>Eli: “I know I don’t have to… I just want to.” He says it quietly, almost shy.`;
+                            }
+                            break;
+                        case "scene3":
+                            if(response === "A") {
+                                dialogueBox.innerHTML += `<br><br>Eli: “Never. I like seeing you grow. And… I like being around you.”`;
+                            } else {
+                                dialogueBox.innerHTML += `<br><br>Eli: “I don’t know. Maybe because… you make things feel lighter.”`;
+                            }
+                            break;
+                        case "scene4":
+                            if(response === "A") {
+                                dialogueBox.innerHTML += `<br><br>Eli: “…I know. And it’s okay. You’re allowed to feel that.” He sits beside you—close, but not too close.`;
+                            } else {
+                                dialogueBox.innerHTML += `<br><br>Eli: “I get scared too. But you don’t have to carry things alone.” He looks at you gently.`;
+                            }
+                            break;
+                    }
+                }
+
+                // Add Next button
+                const nextBtn = document.createElement("button");
+                nextBtn.textContent = "Next";
+                nextBtn.classList.add("choice-btn");
+                nextBtn.addEventListener("click", () => {
+                    scene.style.display = "none";
+
+                    if(scene.id === "scene5") {
+                        document.getElementById(response === "A" ? "endingA" : "endingB").style.display = "block";
+                    } else {
+                        switch(scene.id) {
+                            case "scene1": document.getElementById("scene2").style.display = "block"; break;
+                            case "scene2": document.getElementById("scene3").style.display = "block"; break;
+                            case "scene3": document.getElementById("scene4").style.display = "block"; break;
+                            case "scene4": document.getElementById("scene5").style.display = "block"; break;
+                        }
+                    }
+                });
+                choicesDiv.appendChild(nextBtn);
+            });
+        });
+    });
+});
+</script>
+
+</body>
+</html>
